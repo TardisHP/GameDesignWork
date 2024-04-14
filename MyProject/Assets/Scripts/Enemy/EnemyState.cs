@@ -16,22 +16,18 @@ public class EnemyState
         this.stateMachine = _stateMachine;
         this.animBoolName = _animBoolName;
     }
-
     public virtual void Enter()
     {
         enemy.animator.SetBool(animBoolName, true);
     }
-
     public virtual void Exit()
     {
         enemy.animator.SetBool(animBoolName, false);
     }
-
     public virtual void Update()
     {
         
     }
-
     public virtual void AnimationFinishTrigger()
     {
         triggerCalled = true;

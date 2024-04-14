@@ -19,46 +19,18 @@ public class Gun : MonoBehaviour
         bulletImage.sprite = bulletPrefab[chosenBullet].GetComponent<SpriteRenderer>().sprite;
         charge = 0;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SwitchGun(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchGun(-1);
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            chargeBar.color = colors[chosenBullet];
-        }
-        if (Input.GetMouseButton(0))
-        {
-            if (Input.GetKey(KeyCode.LeftAlt))
-                chargeBar.fillAmount = 1;
-            else
-                Charge();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Shoot();
-            charge = 0;
-            chargeBar.fillAmount = 0;
-        }
-    }
-
-    private void SwitchGun(int direction)
+    public void SwitchGun(int direction)
     {
         chosenBullet = (chosenBullet + direction + bulletCount) % bulletCount;
         bulletImage.sprite = bulletPrefab[chosenBullet].GetComponent<SpriteRenderer>().sprite;
     }
-    private void Charge()
+    public void Charge()
     {
+        chargeBar.color = colors[chosenBullet];
         charge += Time.deltaTime;
         chargeBar.fillAmount = (1 + Mathf.Sin(7 * charge - Mathf.PI / 2)) / 2;
     }
-    private void Shoot()
+    public void Shoot()
     {
         Vector3 wpt = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         wpt.z = transform.position.z;
@@ -68,5 +40,7 @@ public class Gun : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab[chosenBullet], transform.position, Quaternion.Euler(0, 0, angleWithYAxis));
         bullet.GetComponent<Bullet>().alpha = chargeBar.fillAmount / 2f;
         bullet.GetComponent<Bullet>().Hit(vector.normalized);
+        charge = 0;
+        chargeBar.fillAmount = 0;
     }
 }

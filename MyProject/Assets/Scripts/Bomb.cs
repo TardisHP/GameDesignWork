@@ -14,16 +14,7 @@ public class Bomb : MonoBehaviour
     {
         GenerateColor();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DeleteEnemy();
-            GenerateColor();
-        }
-    }
-
-    private void DeleteEnemy()
+    public void DeleteEnemy()
     {
         FindSameColorEnemy();
         foreach (EnemyColor enemy in enemyToDelete)
@@ -32,6 +23,7 @@ public class Bomb : MonoBehaviour
             enemy.DestroySelf();
         }
         enemyToDelete.Clear();
+        GenerateColor();
     }
 
     private void FindSameColorEnemy()
@@ -42,7 +34,7 @@ public class Bomb : MonoBehaviour
             // Debug.Log(colorVector);
             // Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.3f)
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.4f)
             {
                 enemyToDelete.Add(enemy);
             }
