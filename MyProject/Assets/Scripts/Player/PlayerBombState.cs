@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBombState : PlayerState
 {
-    private float fixedDeltaTime = Time.deltaTime;
     public PlayerBombState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -12,6 +11,7 @@ public class PlayerBombState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.rb.velocity = Vector2.zero;
     }
 
     public override void Exit()

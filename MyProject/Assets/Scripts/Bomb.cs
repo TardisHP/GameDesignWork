@@ -11,6 +11,7 @@ public class Bomb : MonoBehaviour
     public EnemyPool enemyPool; // 场景中已有的敌人
     private ArrayList enemyToDelete = new ArrayList();  // 需要摧毁的敌人
     private Image bombImage => GetComponentInChildren<Image>();
+    private Vector3 white = new Vector3(1f, 1f, 1f);
     private void Start()
     {
         GenerateColor();
@@ -40,7 +41,7 @@ public class Bomb : MonoBehaviour
             // Debug.Log(colorVector);
             // Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.7f && enemyColorVector != Vector3.zero)
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.4f && enemyColorVector != white)
             {
                 enemyToDelete.Add(enemy);
             }

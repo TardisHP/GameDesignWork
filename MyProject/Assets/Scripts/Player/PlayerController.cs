@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputAction playerInputAction;
-    private Player player => GetComponent<Player>();
-    private Rigidbody2D rb => GetComponent<Rigidbody2D>();
-    private Gun gun => GetComponentInChildren<Gun>();
     public Vector3 keyboardMoveAxes => playerInputAction.Player.Move.ReadValue<Vector2>();
     public float mouseRightButton => playerInputAction.Player.Charge.ReadValue<float>();
-    private void Awake()
+    private Player player => GetComponent<Player>();
+    private Gun gun => GetComponentInChildren<Gun>();
+    void Awake()
     {
+        //实例化InputActions脚本
         playerInputAction = new PlayerInputAction();
     }
     private void OnEnable()
@@ -25,17 +25,11 @@ public class PlayerController : MonoBehaviour
         //上述同理
         playerInputAction.Player.Disable();
     }
-    private void Update()
+    public void MovePlayer()
     {
-        //在帧更新方法中调用所写的动作方法
-        MovePlayer();
-        Charge();
+        player.rb.velocity = keyboardMoveAxes * 10f;
     }
-    private void MovePlayer()
-    {
-        rb.velocity = keyboardMoveAxes * 10f;
-    }
-    private void Charge()
+    public void Charge()
     {
         if (mouseRightButton != 0)
         {

@@ -21,6 +21,8 @@ public class PlayerMoveState : PlayerState
     public override void Update()
     {
         base.Update();
+        player.controller.MovePlayer();
+        player.controller.Charge();
         if (player.rb.velocity == Vector2.zero)
         {
             stateMachine.ChangeState(player.idleState);

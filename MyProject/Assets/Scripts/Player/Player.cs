@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     #region Components
     public Animator animator;
     public Rigidbody2D rb;
+    public PlayerController controller;
     #endregion
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<PlayerController>();
         stateMachine.Initialize(idleState);
     }
     void Update()
