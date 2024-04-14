@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    void Update()
+    public PlayerStateMachine stateMachine { get; private set; }
+
+    public void Awake()
     {
-        // move
+        stateMachine = new PlayerStateMachine();
     }
 
+    private void Start()
+    {
+        //stateMachine.Initialize(idleState??);
+    }
+
+
+    void Update()
+    {
+        stateMachine.currentState.Update();
+
+        // move
+    }
 }
+
+
