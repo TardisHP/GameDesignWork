@@ -17,9 +17,15 @@ public class Bullet : MonoBehaviour
             colorChangeable.ChangeColor(color, alpha);
             Destroy(gameObject);
         }
+        // 如果目标可以被玩家击退，则根据子弹的方向击退目标
+        IHitByPlayer hitable = collision.GetComponent<IHitByPlayer>();
+        if (hitable != null )
+        {
+            hitable.HitByPlayer(rb.velocity, 2 * alpha);
+        }
     }
     /// <summary>
-    /// Hit函数: 使子弹朝指定方向打出
+    /// Hit函数: 使子弹朝指定方向运动
     /// </summary>
     /// <param name="vector">子弹发射的方向param>
     public void Hit(Vector3 vector)

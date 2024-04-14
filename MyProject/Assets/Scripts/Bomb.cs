@@ -26,7 +26,7 @@ public class Bomb : MonoBehaviour
     private void DeleteEnemy()
     {
         FindSameColorEnemy();
-        foreach (Enemy enemy in enemyToDelete)
+        foreach (EnemyColor enemy in enemyToDelete)
         {
             enemyPool.enemies.Remove(enemy);
             enemy.DestroySelf();
@@ -36,7 +36,7 @@ public class Bomb : MonoBehaviour
 
     private void FindSameColorEnemy()
     {
-        foreach (Enemy enemy in enemyPool.enemies)
+        foreach (EnemyColor enemy in enemyPool.enemies)
         {
             Vector3 enemyColorVector = ColorToVector(enemy.GetColor());
             // Debug.Log(colorVector);
