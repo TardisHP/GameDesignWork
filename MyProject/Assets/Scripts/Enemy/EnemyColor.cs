@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyColor : MonoBehaviour, IColorChange
 {
     private SpriteRenderer sprite => GetComponent<SpriteRenderer>();
+    private Enemy enemy => GetComponent<Enemy>();
     private ColorFixer colorFixer;
     private void Awake()
     {
@@ -28,6 +29,6 @@ public class EnemyColor : MonoBehaviour, IColorChange
     }
     public void DestroySelf()
     {
-        Destroy(gameObject);
+        enemy.DestroySelf();
     }
 }

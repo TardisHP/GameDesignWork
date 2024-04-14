@@ -17,10 +17,9 @@ public class EnemyPool : MonoBehaviour
     private void Update()
     {
         generateTimer += Time.deltaTime;
-        if (generateTimer > 5f && generateCount > 0)
+        if (generateTimer > 5f && generateCount > enemies.Count)
         {
             generateTimer = 0f;
-            generateCount--;
             GameObject tmp = Instantiate(enemyPrefab, GeneratePosition(), Quaternion.identity);
             enemies.Add(tmp.GetComponent<EnemyColor>());
         }

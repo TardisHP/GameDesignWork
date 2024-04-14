@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     public EnemyIdleState idleState { get; private set; }
     public EnemyHitState hitState { get; private set; }
     public EnemyMoveState moveState { get; private set; }
+    public EnemyDeadState deadState { get; private set; }
     #endregion
     #region Attributes
     public Vector2 moveVector;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer
         idleState = new EnemyIdleState(this, stateMachine, "isIdle");
         hitState = new EnemyHitState(this, stateMachine, "isHit");
         moveState = new EnemyMoveState(this, stateMachine, "isMove");
+        deadState = new EnemyDeadState(this, stateMachine, "isDead");
     }
     private void Start()
     {
@@ -44,5 +46,9 @@ public class Enemy : MonoBehaviour, IHitByPlayer
         moveVector = vector;
         hitForce = force;
         stateMachine.ChangeState(hitState);
+    }
+    public void DestroySelf()
+    {
+        stateMachine.ChangeState(deadState);
     }
 }

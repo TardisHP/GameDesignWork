@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     private int chosenBullet = 0;   // 选择的子弹的下标
     private int bulletCount;    // 子弹种类的数量
     private float charge;
-    private Color[] colors = { Color.blue, Color.red, Color.yellow };
+    private Color[] colors = { Color.blue, Color.red, Color.yellow, Color.black };
     private Player player => GetComponentInParent<Player>();
     private void Start()
     {

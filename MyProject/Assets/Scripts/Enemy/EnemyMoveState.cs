@@ -7,7 +7,7 @@ public class EnemyMoveState : EnemyState
 {
     private Transform player;
     private Vector3 moveDirection;
-    private float moveSpeed = .5f;
+    private float moveSpeed = 1f;
     public EnemyMoveState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
     }
