@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
+    public PlayerBombState bombState { get; private set; }
     #endregion
     public void Awake()
     {
         stateMachine = new PlayerStateMachine();
         idleState = new PlayerIdleState(this, stateMachine, "isIdle");
         moveState = new PlayerMoveState(this, stateMachine, "isMove");
+        bombState = new PlayerBombState(this, stateMachine, "isBomb");
     }
 
     private void Start()
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
     {
         stateMachine.currentState.Update();
     }
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 }
 
 

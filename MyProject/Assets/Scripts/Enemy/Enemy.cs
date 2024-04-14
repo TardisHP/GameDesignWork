@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     #region Components
     public Animator animator;
     public Rigidbody2D rb;
+    private StainGenerator stainGenerator => FindFirstObjectByType<StainGenerator>();
+    private SpriteRenderer sprite => GetComponent<SpriteRenderer>();
     #endregion
     #region States
     public EnemyStateMachine stateMachine { get; private set; }
@@ -50,5 +52,6 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     public void DestroySelf()
     {
         stateMachine.ChangeState(deadState);
+        stainGenerator.Generate(sprite.color, transform.position, moveVector, .5f, .15f);
     }
 }

@@ -25,6 +25,7 @@ public class PlayerState
     public virtual void Exit()
     {
         player.animator.SetBool(animBoolName, false);
+        triggerCalled = false;
     }
     public virtual void Update()
     {

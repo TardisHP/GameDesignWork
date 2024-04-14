@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputAction playerInputAction;
+    private Player player => GetComponent<Player>();
     private Rigidbody2D rb => GetComponent<Rigidbody2D>();
     private Gun gun => GetComponentInChildren<Gun>();
-    private Bomb bomb => GetComponentInChildren<Bomb>();
     public Vector3 keyboardMoveAxes => playerInputAction.Player.Move.ReadValue<Vector2>();
     public float mouseRightButton => playerInputAction.Player.Charge.ReadValue<float>();
     private void Awake()
@@ -56,6 +56,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnBomb(InputValue value)
     {
-        bomb.DeleteEnemy();
+        player.stateMachine.ChangeState(player.bombState);
     }
 }

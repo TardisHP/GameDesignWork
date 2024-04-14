@@ -7,7 +7,11 @@ public class Bullet : MonoBehaviour
     protected Color color;  // 子弹的颜色
     public float alpha; // 调色的多少
     protected Rigidbody2D rb => GetComponent<Rigidbody2D>();
-
+    private void Start()
+    {
+        // n秒后自动销毁
+        Destroy(gameObject, 5f);        
+    }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         // 如果目标的颜色可以改变，则根据子弹的颜色改变目标的颜色
