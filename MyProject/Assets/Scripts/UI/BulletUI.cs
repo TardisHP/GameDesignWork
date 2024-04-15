@@ -16,6 +16,6 @@ public class BulletUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        image.sprite = gun.GetComponentInChildren<Image>().sprite;
+        image.sprite = gun.GetCurrentBulletSprite();
     }
 }

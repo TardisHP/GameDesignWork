@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerInputAction playerInputAction;
     public Vector3 keyboardMoveAxes => playerInputAction.Player.Move.ReadValue<Vector2>();
-    public float mouseRightButton => playerInputAction.Player.Charge.ReadValue<float>();
+    public float mouseRightButton => playerInputAction.Player.KeepPress.ReadValue<float>();
     private Player player => GetComponent<Player>();
     private Gun gun => GetComponentInChildren<Gun>();
     void Awake()
@@ -29,24 +29,24 @@ public class PlayerController : MonoBehaviour
     {
         player.rb.velocity = keyboardMoveAxes * 10f;
     }
-    public void Charge()
+    public void KeepPress()
     {
         if (mouseRightButton != 0)
         {
-            gun.Charge();
+            gun.ButtonKeepPress();
         }
     }
     private void OnSwitchLeft(InputValue value)
     {
-        gun.SwitchGun(-1);
+        gun.SwitchBullet(-1);
     }
     private void OnSwitchRight(InputValue value)
     {
-        gun.SwitchGun(1);
+        gun.SwitchBullet(1);
     }
-    private void OnShoot(InputValue value)
+    private void OnButtonUp(InputValue value)
     {
-        gun.Shoot();
+        gun.ButtonUp();
     }
     private void OnBomb(InputValue value)
     {

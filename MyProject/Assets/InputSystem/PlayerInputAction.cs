@@ -37,15 +37,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""e99d1acf-2333-403f-8c17-78a6960cdf6e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""SwitchRight"",
                     ""type"": ""Button"",
                     ""id"": ""de144438-95a5-4644-a79b-29a4158ccab1"",
@@ -73,7 +64,16 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Charge"",
+                    ""name"": ""ButtonUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""e99d1acf-2333-403f-8c17-78a6960cdf6e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeepPress"",
                     ""type"": ""Button"",
                     ""id"": ""c88f06b9-c564-4b51-aa13-ff54f0cc8df5"",
                     ""expectedControlType"": ""Button"",
@@ -140,17 +140,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""45795f50-a737-4cff-9eba-038d2e0d436f"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9982574f-02a8-4472-9e41-2c23317ef474"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -189,7 +178,18 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Charge"",
+                    ""action"": ""KeepPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45795f50-a737-4cff-9eba-038d2e0d436f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -201,11 +201,11 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_SwitchRight = m_Player.FindAction("SwitchRight", throwIfNotFound: true);
         m_Player_SwitchLeft = m_Player.FindAction("SwitchLeft", throwIfNotFound: true);
         m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
-        m_Player_Charge = m_Player.FindAction("Charge", throwIfNotFound: true);
+        m_Player_ButtonUp = m_Player.FindAction("ButtonUp", throwIfNotFound: true);
+        m_Player_KeepPress = m_Player.FindAction("KeepPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,21 +268,21 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_SwitchRight;
     private readonly InputAction m_Player_SwitchLeft;
     private readonly InputAction m_Player_Bomb;
-    private readonly InputAction m_Player_Charge;
+    private readonly InputAction m_Player_ButtonUp;
+    private readonly InputAction m_Player_KeepPress;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @SwitchRight => m_Wrapper.m_Player_SwitchRight;
         public InputAction @SwitchLeft => m_Wrapper.m_Player_SwitchLeft;
         public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
-        public InputAction @Charge => m_Wrapper.m_Player_Charge;
+        public InputAction @ButtonUp => m_Wrapper.m_Player_ButtonUp;
+        public InputAction @KeepPress => m_Wrapper.m_Player_KeepPress;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,9 +295,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Shoot.started += instance.OnShoot;
-            @Shoot.performed += instance.OnShoot;
-            @Shoot.canceled += instance.OnShoot;
             @SwitchRight.started += instance.OnSwitchRight;
             @SwitchRight.performed += instance.OnSwitchRight;
             @SwitchRight.canceled += instance.OnSwitchRight;
@@ -307,9 +304,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Bomb.started += instance.OnBomb;
             @Bomb.performed += instance.OnBomb;
             @Bomb.canceled += instance.OnBomb;
-            @Charge.started += instance.OnCharge;
-            @Charge.performed += instance.OnCharge;
-            @Charge.canceled += instance.OnCharge;
+            @ButtonUp.started += instance.OnButtonUp;
+            @ButtonUp.performed += instance.OnButtonUp;
+            @ButtonUp.canceled += instance.OnButtonUp;
+            @KeepPress.started += instance.OnKeepPress;
+            @KeepPress.performed += instance.OnKeepPress;
+            @KeepPress.canceled += instance.OnKeepPress;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -317,9 +317,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Shoot.started -= instance.OnShoot;
-            @Shoot.performed -= instance.OnShoot;
-            @Shoot.canceled -= instance.OnShoot;
             @SwitchRight.started -= instance.OnSwitchRight;
             @SwitchRight.performed -= instance.OnSwitchRight;
             @SwitchRight.canceled -= instance.OnSwitchRight;
@@ -329,9 +326,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Bomb.started -= instance.OnBomb;
             @Bomb.performed -= instance.OnBomb;
             @Bomb.canceled -= instance.OnBomb;
-            @Charge.started -= instance.OnCharge;
-            @Charge.performed -= instance.OnCharge;
-            @Charge.canceled -= instance.OnCharge;
+            @ButtonUp.started -= instance.OnButtonUp;
+            @ButtonUp.performed -= instance.OnButtonUp;
+            @ButtonUp.canceled -= instance.OnButtonUp;
+            @KeepPress.started -= instance.OnKeepPress;
+            @KeepPress.performed -= instance.OnKeepPress;
+            @KeepPress.canceled -= instance.OnKeepPress;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -352,10 +352,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
         void OnSwitchRight(InputAction.CallbackContext context);
         void OnSwitchLeft(InputAction.CallbackContext context);
         void OnBomb(InputAction.CallbackContext context);
-        void OnCharge(InputAction.CallbackContext context);
+        void OnButtonUp(InputAction.CallbackContext context);
+        void OnKeepPress(InputAction.CallbackContext context);
     }
 }

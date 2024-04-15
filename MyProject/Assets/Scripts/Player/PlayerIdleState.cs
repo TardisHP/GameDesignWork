@@ -22,7 +22,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
         player.controller.MovePlayer();
-        player.controller.Charge();
+        player.controller.KeepPress();
         if (player.rb.velocity != Vector2.zero)
         {
             stateMachine.ChangeState(player.moveState);
