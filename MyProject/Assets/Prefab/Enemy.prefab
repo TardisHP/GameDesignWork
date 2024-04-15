@@ -201,6 +201,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveVector: {x: 0, y: 0}
   hitForce: 0
+  damagePrefab: {fileID: 7011601669092903518, guid: d1ab62768c2cb434e938d40c3e048cb6, type: 3}
 --- !u!1001 &377627898610688322
 PrefabInstance:
   m_ObjectHideFlags: 0

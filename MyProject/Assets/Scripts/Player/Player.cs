@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     public PlayerController controller;
+    public SpriteRenderer sprite;
     #endregion
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -15,6 +16,8 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState { get; private set; }
     public PlayerBombState bombState { get; private set; }
     #endregion
+    public bool canHurt;
+    public int health;
     public void Awake()
     {
         stateMachine = new PlayerStateMachine();
@@ -28,7 +31,10 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
+        sprite = GetComponent<SpriteRenderer>();
         stateMachine.Initialize(idleState);
+        canHurt = true;
+        health = 5;
     }
     void Update()
     {

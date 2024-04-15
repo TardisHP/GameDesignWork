@@ -7,7 +7,8 @@ public class Gun : MonoBehaviour
 {
     public GameObject[] bulletPrefab;
     protected int chosenBullet = 0;   // 选中的子弹的下标
-    protected int bulletCount;    // 子弹种类的数量
+    protected int bulletTypeCount;    // 子弹种类的数量
+    protected int bulletNum = -1;
     protected Player player => GetComponentInParent<Player>();
     #region BulletState
     protected GameObject bulletToShoot; // 生成的下一发子弹实体
@@ -17,32 +18,29 @@ public class Gun : MonoBehaviour
     #endregion
     protected void Start()
     {
-        bulletCount = bulletPrefab.Length;
+        bulletTypeCount = bulletPrefab.Length;
     }
     public void SwitchBullet(int direction)
     {
-        chosenBullet = (chosenBullet + direction + bulletCount) % bulletCount;
+        chosenBullet = (chosenBullet + direction + bulletTypeCount) % bulletTypeCount;
     }
     /// <summary>
     /// 按住按键时
     /// </summary>
     public virtual void ButtonKeepPress()
     {
-        
     }
     /// <summary>
     /// 松开按键时
     /// </summary>
     public virtual void ButtonUp()
     {
-        
     }
     /// <summary>
     /// 按下按键时
     /// </summary>
     public virtual void ButtonDown()
     {
-
     }
     protected virtual void GenerateBullet()
     {

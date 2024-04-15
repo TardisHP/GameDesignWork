@@ -78,5 +78,4 @@ public class StainGenerator : MonoBehaviour
     {
         return num + Random.Range(-num * randomness, num * randomness);
     }
-
 }

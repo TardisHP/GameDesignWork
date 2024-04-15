@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
 {
@@ -24,6 +26,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     public Vector2 moveVector;
     public float hitForce;
     #endregion
+    public GameObject damagePrefab;
+    private float shootTimer;
     private void Awake()
     {
         stateMachine = new EnemyStateMachine();
@@ -37,11 +41,18 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(idleState);
+        shootTimer = 0f;
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     private void Update()
     {
         stateMachine.currentState.Update();
+        shootTimer += Time.deltaTime;
+        if (shootTimer > 3f)
+        {
+            shootTimer = 0f;
+            ShootToPlayer();
+        }
     }
 
     public void HitByPlayer(Vector2 vector, float force)
@@ -61,5 +72,39 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
         ParticleSystem.MainModule mainModule = hitFX.main;
         mainModule.startColor = sprite.color;
         hitFX.Play();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 撞到玩家扣血
+        Player player = collision.collider.GetComponent<Player>();
+        if (player != null && player.canHurt)
+        {
+            player.health -= 1;
+        }
+    }
+    private void ShootToPlayer()
+    {
+        // 以position为中心分裂到若干个方向，每个分裂的角度随机
+        int splitNum = Random.Range(6, 9);  // 分裂数量随机，数值暂时写死
+        Vector3[] splitDirs = new Vector3[splitNum];
+        float angleDelta = 360f / splitNum;
+        for (int i = 0; i < splitDirs.Length; i++)
+        {
+            var lastDir = i == 0 ? Vector3.up : splitDirs[i - 1];
+            var angle = RandomNum(angleDelta, .2f);
+            splitDirs[i] = Quaternion.AngleAxis(angle, Vector3.forward) * lastDir;
+        }
+        // 每个分裂方向生成若干个污渍
+        foreach (var dir in splitDirs)
+        {
+            var go = Instantiate(damagePrefab);
+            go.transform.position = transform.position;
+            go.transform.right = dir;
+            go.GetComponent<Damage>().HitByVector(dir, 10f);
+        }
+    }
+    private float RandomNum(float num, float randomness)
+    {
+        return num + Random.Range(-num * randomness, num * randomness);
     }
 }

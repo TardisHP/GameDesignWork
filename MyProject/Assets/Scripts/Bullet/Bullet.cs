@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     protected Color color;  // 子弹的颜色
     public float alpha; // 调色的多少
     protected Rigidbody2D rb => GetComponent<Rigidbody2D>();
-    private void Start()
+    protected void Start()
     {
         // n秒后自动销毁
         Destroy(gameObject, 5f);        

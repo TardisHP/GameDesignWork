@@ -21,4 +21,8 @@ public class PlayerEffect : MonoBehaviour
         screenShake.GenerateImpulse();
         bomb.DeleteEnemy();
     }
+    public void ShakeScreen()
+    {
+        screenShake.GenerateImpulse();
+    }
 }

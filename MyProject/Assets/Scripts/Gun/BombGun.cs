@@ -5,11 +5,22 @@ using UnityEngine.U2D;
 
 public class BombGun : Gun
 {
-    public StainGenerator stainGenerator;
+    private void Awake()
+    {
+        bulletNum = 3;
+    }
     public override void ButtonDown()
     {
         base.ButtonDown();
-        GenerateBullet();
+        if (bulletNum > 0)
+        {
+            bulletNum--;
+            GenerateBullet();
+        }
+        else if (bulletNum == 0)
+        {
+            return;
+        }
     }
 
     public override void ButtonKeepPress()
@@ -27,7 +38,5 @@ public class BombGun : Gun
         base.GenerateBullet();
         bulletToShoot.GetComponent<Bullet>().alpha = 1f;
         bulletToShoot.transform.position = wpt;
-        // 在子弹处生成一滩爆炸痕迹
-        stainGenerator.Generate(bulletToShoot.GetComponent<Bullet>().GetColor(), wpt, Vector3.up, 1.5f, 2f);
     }
 }

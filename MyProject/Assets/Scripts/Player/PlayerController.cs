@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     public void MovePlayer()
     {
-        player.rb.velocity = keyboardMoveAxes * 10f;
+        player.rb.velocity = keyboardMoveAxes * 4f;
     }
     public void KeepPress()
     {
