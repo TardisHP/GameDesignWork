@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Bomb : MonoBehaviour
 {
+    public StainGenerator stainGenerator;
     public int killScore;
     public Color color; // 炸弹的颜色
     private Vector3 colorVector;    // 储存炸弹颜色的向量
@@ -23,6 +24,7 @@ public class Bomb : MonoBehaviour
         FindSameColorEnemy();
         if (enemyToDelete.Count > 0 )
         {
+            stainGenerator.Generate(color, transform.position, Vector3.up, enemyToDelete.Count / 3, enemyToDelete.Count, enemyToDelete.Count);
             foreach (EnemyColor enemy in enemyToDelete)
             {
                 enemyPool.enemies.Remove(enemy);
@@ -41,7 +43,7 @@ public class Bomb : MonoBehaviour
             // Debug.Log(colorVector);
             // Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.5f && enemyColorVector != white)
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.8f && enemyColorVector != white)
             {
                 enemyToDelete.Add(enemy);
             }

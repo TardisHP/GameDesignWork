@@ -2043,6 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7a3035cc1e98441bee3af0f141591d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stainGenerator: {fileID: 1675246134}
   killScore: 0
   color: {r: 1, g: 1, b: 1, a: 0}
   enemyPool: {fileID: 237469766}
