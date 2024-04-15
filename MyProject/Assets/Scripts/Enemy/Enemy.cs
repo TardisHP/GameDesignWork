@@ -4,13 +4,14 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IHitByPlayer
+public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
 {
     #region Components
     public Animator animator;
     public Rigidbody2D rb;
     private StainGenerator stainGenerator => FindFirstObjectByType<StainGenerator>();
     private SpriteRenderer sprite => GetComponent<SpriteRenderer>();
+    public ParticleSystem hitFX => GetComponentInChildren<ParticleSystem>();
     #endregion
     #region States
     public EnemyStateMachine stateMachine { get; private set; }
@@ -53,5 +54,12 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     {
         stateMachine.ChangeState(deadState);
         stainGenerator.Generate(sprite.color, transform.position, moveVector, .5f, .15f);
+    }
+
+    public void PlayHitFX()
+    {
+        ParticleSystem.MainModule mainModule = hitFX.main;
+        mainModule.startColor = sprite.color;
+        hitFX.Play();
     }
 }

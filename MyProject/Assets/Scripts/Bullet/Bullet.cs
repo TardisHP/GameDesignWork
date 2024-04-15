@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
         // n秒后自动销毁
         Destroy(gameObject, 5f);        
     }
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // 如果目标的颜色可以改变，则根据子弹的颜色改变目标的颜色
         IColorChange colorChangeable = collision.GetComponent<IColorChange>();
@@ -26,6 +26,12 @@ public class Bullet : MonoBehaviour
         if (hitable != null )
         {
             hitable.HitByPlayer(rb.velocity, 2 * alpha);
+        }
+        // 如果目标有打击粒子特效，则播放粒子系统
+        IHitFX hitFXable = collision.GetComponent<IHitFX>();
+        if (hitFXable != null)
+        {
+            hitFXable.PlayHitFX();
         }
     }
     /// <summary>

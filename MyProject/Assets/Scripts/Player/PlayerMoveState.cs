@@ -23,6 +23,7 @@ public class PlayerMoveState : PlayerState
         base.Update();
         player.controller.MovePlayer();
         player.controller.KeepPress();
+        player.controller.MouseMiddleButton();
         if (player.rb.velocity == Vector2.zero)
         {
             stateMachine.ChangeState(player.idleState);

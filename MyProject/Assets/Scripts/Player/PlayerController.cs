@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputAction playerInputAction;
-    public Vector3 keyboardMoveAxes => playerInputAction.Player.Move.ReadValue<Vector2>();
-    public float mouseRightButton => playerInputAction.Player.KeepPress.ReadValue<float>();
+    private Mouse mouse = Mouse.current;
+    private Vector3 keyboardMoveAxes => playerInputAction.Player.Move.ReadValue<Vector2>();
+    private float mouseRightButton => playerInputAction.Player.KeepPress.ReadValue<float>();
     private Player player => GetComponent<Player>();
-    private Gun gun => GetComponentInChildren<Gun>();
+    private GunPool guns => GetComponentInChildren<GunPool>();
     void Awake()
     {
         //ÊµÀý»¯InputActions½Å±¾
@@ -33,20 +35,32 @@ public class PlayerController : MonoBehaviour
     {
         if (mouseRightButton != 0)
         {
-            gun.ButtonKeepPress();
+            guns.GetChosenGun().ButtonKeepPress();
+        }
+    }
+    public void MouseMiddleButton()
+    {
+        float val = mouse.scroll.y.ReadValue();
+        if (val != 0f)
+        {
+            guns.SwitchGun(val > 0 ? 1 : -1);
         }
     }
     private void OnSwitchLeft(InputValue value)
     {
-        gun.SwitchBullet(-1);
+        guns.GetChosenGun().SwitchBullet(-1);
     }
     private void OnSwitchRight(InputValue value)
     {
-        gun.SwitchBullet(1);
+        guns.GetChosenGun().SwitchBullet(1);
     }
     private void OnButtonUp(InputValue value)
     {
-        gun.ButtonUp();
+        guns.GetChosenGun().ButtonUp();
+    }
+    private void OnButtonDown(InputValue value)
+    {
+        guns.GetChosenGun().ButtonDown();
     }
     private void OnBomb(InputValue value)
     {

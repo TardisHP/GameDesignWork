@@ -80,6 +80,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ButtonDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""839576ae-17a9-4d12-9cd4-eafb4010dfef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""ButtonUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d6c6ad0-0ae8-4aed-8639-05e0341cc484"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
         m_Player_ButtonUp = m_Player.FindAction("ButtonUp", throwIfNotFound: true);
         m_Player_KeepPress = m_Player.FindAction("KeepPress", throwIfNotFound: true);
+        m_Player_ButtonDown = m_Player.FindAction("ButtonDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Bomb;
     private readonly InputAction m_Player_ButtonUp;
     private readonly InputAction m_Player_KeepPress;
+    private readonly InputAction m_Player_ButtonDown;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
         public InputAction @ButtonUp => m_Wrapper.m_Player_ButtonUp;
         public InputAction @KeepPress => m_Wrapper.m_Player_KeepPress;
+        public InputAction @ButtonDown => m_Wrapper.m_Player_ButtonDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @KeepPress.started += instance.OnKeepPress;
             @KeepPress.performed += instance.OnKeepPress;
             @KeepPress.canceled += instance.OnKeepPress;
+            @ButtonDown.started += instance.OnButtonDown;
+            @ButtonDown.performed += instance.OnButtonDown;
+            @ButtonDown.canceled += instance.OnButtonDown;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +358,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @KeepPress.started -= instance.OnKeepPress;
             @KeepPress.performed -= instance.OnKeepPress;
             @KeepPress.canceled -= instance.OnKeepPress;
+            @ButtonDown.started -= instance.OnButtonDown;
+            @ButtonDown.performed -= instance.OnButtonDown;
+            @ButtonDown.canceled -= instance.OnButtonDown;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +386,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnBomb(InputAction.CallbackContext context);
         void OnButtonUp(InputAction.CallbackContext context);
         void OnKeepPress(InputAction.CallbackContext context);
+        void OnButtonDown(InputAction.CallbackContext context);
     }
 }

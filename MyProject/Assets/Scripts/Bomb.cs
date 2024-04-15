@@ -41,7 +41,7 @@ public class Bomb : MonoBehaviour
             // Debug.Log(colorVector);
             // Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.2f && enemyColorVector != white)
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.5f && enemyColorVector != white)
             {
                 enemyToDelete.Add(enemy);
             }

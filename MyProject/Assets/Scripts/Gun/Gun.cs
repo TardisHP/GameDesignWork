@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     protected Player player => GetComponentInParent<Player>();
     #region BulletState
     protected GameObject bulletToShoot; // 生成的下一发子弹实体
+    protected Vector3 wpt;  // 鼠标位置
     protected Vector3 shootVector;  // 生成的子弹要射向的方向
     protected float angleWithYAxis;
     #endregion
@@ -36,10 +37,17 @@ public class Gun : MonoBehaviour
     {
         
     }
+    /// <summary>
+    /// 按下按键时
+    /// </summary>
+    public virtual void ButtonDown()
+    {
+
+    }
     protected virtual void GenerateBullet()
     {
         // 生成子弹实体和方向
-        Vector3 wpt = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        wpt = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         wpt.z = transform.position.z;
         shootVector = wpt - transform.position;
         angleWithYAxis = Vector3.Angle(Vector3.up, shootVector);

@@ -8,4 +8,8 @@ public class BulletRed : Bullet
     {
         color = Color.red;
     }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+    }
 }

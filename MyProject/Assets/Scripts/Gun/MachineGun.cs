@@ -30,7 +30,7 @@ public class MachineGun : Gun
     protected override void GenerateBullet()
     {
         base.GenerateBullet();
-        bulletToShoot.GetComponent<Bullet>().alpha = .05f;
+        bulletToShoot.GetComponent<Bullet>().alpha = .1f;
         bulletToShoot.GetComponent<Bullet>().Hit(shootVector.normalized);
     }
 }
