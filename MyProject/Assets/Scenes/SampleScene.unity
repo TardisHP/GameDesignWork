@@ -1099,7 +1099,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8805031, g: 0.8805031, b: 0.8805031, a: 0}
+  m_BackGroundColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1708,7 +1708,6 @@ MonoBehaviour:
   bulletPrefab:
   - {fileID: 2421354306418194473, guid: f7b172d64ca8eae4a9c390007a5d33c0, type: 3}
   - {fileID: 2421354306418194473, guid: 87e745cb67b6204499efe54450ef2afc, type: 3}
-  stainGenerator: {fileID: 1675246134}
 --- !u!1 &922654502
 GameObject:
   m_ObjectHideFlags: 0
