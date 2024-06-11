@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class EnemyMoveState : EnemyState
 {
     private Transform player;
-    private Vector3 moveDirection;
     private float moveSpeed = 2f;
+    private Vector3 moveDirection;
     public EnemyMoveState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
     }
@@ -31,6 +31,7 @@ public class EnemyMoveState : EnemyState
     }
     private void Move()
     {
-        enemy.transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
+        // enemy.transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
+        enemy.rb.velocity = moveDirection.normalized * moveSpeed;
     }
 }

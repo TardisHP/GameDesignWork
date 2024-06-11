@@ -7,6 +7,10 @@ public class GunPool : MonoBehaviour
     private Gun[] guns => GetComponentsInChildren<Gun>();
     private int chosenGun = 0;
     private int gunCount;
+    
+    public SpriteRenderer gunSpriteRenderer;
+    public GunUI gunUI;
+
     private void Start()
     {
         gunCount = guns.Length;
@@ -16,6 +20,9 @@ public class GunPool : MonoBehaviour
             canvas.enabled = false;
         }
         guns[chosenGun].GetComponentInChildren<Canvas>().enabled = true;
+        // …Ë÷√UIÃ˘Õº
+        gunSpriteRenderer.sprite = guns[chosenGun].gunImg;
+        gunUI.SetSprite(guns[chosenGun].gunImg);
     }
     public Gun GetChosenGun()
     {
@@ -28,6 +35,8 @@ public class GunPool : MonoBehaviour
         chosenGun = (chosenGun + direction + gunCount) % gunCount;
         canvas = guns[chosenGun].GetComponentInChildren<Canvas>();
         canvas.enabled = true;
-
+        // …Ë÷√UIÃ˘Õº
+        gunSpriteRenderer.sprite = guns[chosenGun].gunImg;
+        gunUI.SetSprite(guns[chosenGun].gunImg);
     }
 }

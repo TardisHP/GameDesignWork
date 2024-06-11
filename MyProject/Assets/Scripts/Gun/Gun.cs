@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
+    public Sprite gunImg;
+
     public GameObject[] bulletPrefab;
     protected int chosenBullet = 0;   // 选中的子弹的下标
     protected int bulletTypeCount;    // 子弹种类的数量
     protected int bulletNum = -1;
     protected Player player => GetComponentInParent<Player>();
+
     #region BulletState
     protected GameObject bulletToShoot; // 生成的下一发子弹实体
     protected Vector3 wpt;  // 鼠标位置
     protected Vector3 shootVector;  // 生成的子弹要射向的方向
     protected float angleWithYAxis;
     #endregion
+
     protected void Start()
     {
         bulletTypeCount = bulletPrefab.Length;

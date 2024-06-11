@@ -15,19 +15,23 @@ public class Player : MonoBehaviour
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerBombState bombState { get; private set; }
+    public PlayerHitState hitState { get; private set; }
     #endregion
     public bool canHurt;
     public int health;
+    public PlayerDetector detector;
     public void Awake()
     {
         stateMachine = new PlayerStateMachine();
         idleState = new PlayerIdleState(this, stateMachine, "isIdle");
         moveState = new PlayerMoveState(this, stateMachine, "isMove");
         bombState = new PlayerBombState(this, stateMachine, "isBomb");
+        hitState = new PlayerHitState(this, stateMachine, "isHit");
     }
 
     private void Start()
     {
+        detector = GetComponent<PlayerDetector>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();

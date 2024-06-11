@@ -77,9 +77,9 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     {
         // ×²µ½Íæ¼Ò¿ÛÑª
         Player player = collision.collider.GetComponent<Player>();
-        if (player != null && player.canHurt)
+        if (player != null)
         {
-            player.health -= 1;
+            player.detector.ChangeHealth(transform);
         }
     }
     private void ShootToPlayer()

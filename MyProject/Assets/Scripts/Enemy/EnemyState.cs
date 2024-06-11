@@ -27,7 +27,13 @@ public class EnemyState
     }
     public virtual void Update()
     {
-        
+        Vector3 vector = enemy.rb.velocity;
+        if (vector.x != 0)
+        {
+            float scaleVal = enemy.transform.localScale.z;
+            float scaleX = vector.x > 0 ? scaleVal : -scaleVal;
+            enemy.transform.localScale = new Vector3(scaleX, scaleVal, scaleVal);
+        }
     }
     public virtual void AnimationFinishTrigger()
     {

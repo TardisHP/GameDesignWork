@@ -35,7 +35,7 @@ public class PlayerState
         if (vector.x != 0)
         {
             float scaleVal = player.transform.localScale.z;
-            float scaleX = vector.x > 0 ? scaleVal : -scaleVal;
+            float scaleX = vector.x < 0 ? scaleVal : -scaleVal;
             player.transform.localScale = new Vector3(scaleX, scaleVal, scaleVal);
         }
     }
