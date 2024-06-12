@@ -7,12 +7,27 @@ public class Bomb : MonoBehaviour
 {
     public StainGenerator stainGenerator;
     public int killScore;
+    private Color[] colorArray;  // 储存可能出现的炸弹颜色
+    private Queue<int> colorQueue;    // 储存炸弹颜色的序列
     public Color color; // 炸弹的颜色
     private Vector3 colorVector;    // 储存炸弹颜色的向量
     public EnemyPool enemyPool; // 场景中已有的敌人
     private ArrayList enemyToDelete = new ArrayList();  // 需要摧毁的敌人
     private Image bombImage => GetComponentInChildren<Image>();
     private Vector3 white = new Vector3(1f, 1f, 1f);
+    private void Awake()
+    {
+        colorArray = new Color[]{
+            Color.red,
+            Color.green,
+            Color.blue,
+            Color.yellow,
+            new Color(0f, 1f, 1f),
+            new Color(1f, 0f, 1f),
+            new Color(1f, 1f, 0f),
+        };
+        colorQueue = new Queue<int>();
+    }
     private void Start()
     {
         GenerateColor();
@@ -54,7 +69,20 @@ public class Bomb : MonoBehaviour
     /// </summary>
     private void GenerateColor()
     {
-        color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        if (colorQueue.Count == 0)
+        {
+            int c = 0;
+            for (int i = 0; i < colorArray.Length; i++)
+            {
+                do
+                {
+                    c = Random.Range(0, colorArray.Length);
+
+                } while (colorQueue.Contains(c));
+                colorQueue.Enqueue(c);
+            }
+        }
+        color = colorArray[colorQueue.Dequeue()];
         colorVector = ColorToVector(color);
         bombImage.color = color;
     }
