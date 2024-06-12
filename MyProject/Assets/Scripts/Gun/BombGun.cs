@@ -38,5 +38,5 @@ public class BombGun : Gun
         base.GenerateBullet();
         bulletToShoot.GetComponent<Bullet>().alpha = 1f;
         bulletToShoot.transform.position = wpt;
-    }
+    }   
 }

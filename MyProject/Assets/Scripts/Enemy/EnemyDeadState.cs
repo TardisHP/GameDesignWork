@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDeadState : EnemyState
+
 {
+    
     public EnemyDeadState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
     }

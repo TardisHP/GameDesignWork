@@ -28,6 +28,9 @@ public class SniperGun : Gun
     protected override void GenerateBullet()
     {
         base.GenerateBullet();
+
+        audioController.PlaySfx(audioController.gun);
+
         bulletToShoot.GetComponent<Bullet>().alpha = chargeBar.fillAmount / 2f;
         bulletToShoot.GetComponent<Bullet>().Hit(shootVector.normalized);
     }
