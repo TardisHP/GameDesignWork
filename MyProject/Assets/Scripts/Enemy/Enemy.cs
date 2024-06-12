@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     #endregion
     public GameObject damagePrefab;
     private float shootTimer;
+    
     private void Awake()
     {
         stateMachine = new EnemyStateMachine();

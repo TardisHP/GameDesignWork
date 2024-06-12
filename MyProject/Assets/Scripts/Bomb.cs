@@ -43,7 +43,8 @@ public class Bomb : MonoBehaviour
         FindSameColorEnemy();
         if (enemyToDelete.Count > 0 )
         {
-            audioController.PlaySfx(audioController.gun);
+            // ²¥·Å»÷É±ÒôÐ§
+            audioController.PlaySfx(audioController.bomb);
 
             stainGenerator.Generate(color, transform.position, Vector3.up, enemyToDelete.Count / 3, enemyToDelete.Count, enemyToDelete.Count);
             foreach (EnemyColor enemy in enemyToDelete)

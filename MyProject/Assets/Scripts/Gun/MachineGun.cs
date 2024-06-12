@@ -33,7 +33,7 @@ public class MachineGun : Gun
     {       
         base.GenerateBullet();
 
-        audioController.PlaySfx(audioController.gun);
+        audioController.PlaySfx(audioController.machienGun);
 
         bulletToShoot.GetComponent<Bullet>().alpha = .1f;
         bulletToShoot.GetComponent<Bullet>().Hit(shootVector.normalized);

@@ -36,6 +36,7 @@ public class BombGun : Gun
     protected override void GenerateBullet()
     {
         base.GenerateBullet();
+        audioController.PlaySfx(audioController.bombGun);
         bulletToShoot.GetComponent<Bullet>().alpha = 1f;
         bulletToShoot.transform.position = wpt;
     }   

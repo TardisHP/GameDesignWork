@@ -39,7 +39,7 @@ public class BombBullet : Bullet
         GetComponent<Collider2D>().enabled = true;
         spriteRenderer.enabled = false;
         //播放爆炸音效
-        audioController.PlaySfx(audioController.bomb);
+        audioController.PlaySfx(audioController.bombBullet);
         // 在子弹处生成一滩爆炸痕迹
         stainGenerator.Generate(color, transform.position, Vector3.up, 1.5f, 2f);
         FindFirstObjectByType<PlayerEffect>().ShakeScreen();

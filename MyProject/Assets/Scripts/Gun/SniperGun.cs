@@ -29,7 +29,7 @@ public class SniperGun : Gun
     {
         base.GenerateBullet();
 
-        audioController.PlaySfx(audioController.gun);
+        audioController.PlaySfx(audioController.sniperGun);
 
         bulletToShoot.GetComponent<Bullet>().alpha = chargeBar.fillAmount / 2f;
         bulletToShoot.GetComponent<Bullet>().Hit(shootVector.normalized);

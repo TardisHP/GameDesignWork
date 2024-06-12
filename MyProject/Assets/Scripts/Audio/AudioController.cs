@@ -7,8 +7,14 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioSource BgmAudio;
     [SerializeField] AudioSource SfxAudio;
 
+    [Header("BGM")]
     public AudioClip bgm;
-    public AudioClip gun;
+    [Header("Gun")]
+    public AudioClip machienGun;
+    public AudioClip sniperGun;
+    public AudioClip bombGun;
+    public AudioClip bombBullet;
+    [Header("Skill")]
     public AudioClip bomb;
 
     public void Start()
