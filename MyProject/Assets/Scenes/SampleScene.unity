@@ -565,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 152348973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 0.00000011920929, z: -10}
+  m_LocalPosition: {x: -0.00000059604645, y: 0.00000011920929, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1200,7 +1200,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 0.00000011920929, z: -10}
+  m_LocalPosition: {x: -0.00000059604645, y: 0.00000011920929, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2216,7 +2216,10 @@ MonoBehaviour:
   BgmAudio: {fileID: 2131409014}
   SfxAudio: {fileID: 397549318}
   bgm: {fileID: 0}
-  gun: {fileID: 8300000, guid: 3c558954a231f6243aedfcfdf4e0cb75, type: 3}
+  machienGun: {fileID: 8300000, guid: 3c558954a231f6243aedfcfdf4e0cb75, type: 3}
+  sniperGun: {fileID: 8300000, guid: bca87cad399c569478484d5f960af461, type: 3}
+  bombGun: {fileID: 8300000, guid: 726adccf2b59a084ba64870b983536ea, type: 3}
+  bombBullet: {fileID: 8300000, guid: 028fc660c4e5cc14386ae020323ea839, type: 3}
   bomb: {fileID: 8300000, guid: d991fe19716ea6045875e50d7cc447b5, type: 3}
 --- !u!4 &1623288257
 Transform:
