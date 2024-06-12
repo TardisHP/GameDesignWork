@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Bomb : MonoBehaviour
 {
+    AudioController audioController;
+
     public StainGenerator stainGenerator;
     public int killScore;
     public Color color; // Õ¨µ¯µÄÑÕÉ«
@@ -15,6 +17,8 @@ public class Bomb : MonoBehaviour
     private Vector3 white = new Vector3(1f, 1f, 1f);
     private void Start()
     {
+        audioController = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioController>();
+
         GenerateColor();
         killScore = 0;
     }
@@ -24,6 +28,8 @@ public class Bomb : MonoBehaviour
         FindSameColorEnemy();
         if (enemyToDelete.Count > 0 )
         {
+            audioController.PlaySfx(audioController.gun);
+
             stainGenerator.Generate(color, transform.position, Vector3.up, enemyToDelete.Count / 3, enemyToDelete.Count, enemyToDelete.Count);
             foreach (EnemyColor enemy in enemyToDelete)
             {

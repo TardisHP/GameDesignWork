@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Gun : MonoBehaviour
 {
+    protected AudioController audioController;
+
     public Sprite gunImg;
 
     public GameObject[] bulletPrefab;
@@ -23,6 +26,8 @@ public class Gun : MonoBehaviour
     protected void Start()
     {
         bulletTypeCount = bulletPrefab.Length;
+        
+        audioController = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioController>();
     }
     public void SwitchBullet(int direction)
     {
@@ -48,6 +53,7 @@ public class Gun : MonoBehaviour
     }
     protected virtual void GenerateBullet()
     {
+          
         // 生成子弹实体和方向
         wpt = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         wpt.z = transform.position.z;

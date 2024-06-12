@@ -4,6 +4,8 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputAction playerInputAction;
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnButtonDown(InputValue value)
     {
+        
         guns.GetChosenGun().ButtonDown();
     }
     private void OnBomb(InputValue value)

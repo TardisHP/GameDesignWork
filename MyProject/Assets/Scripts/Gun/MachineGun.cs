@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MachineGun : Gun
 {
     private float shootCoolTimer = 0f;
@@ -16,6 +17,7 @@ public class MachineGun : Gun
         {
             shootCoolTimer = 0f;
             GenerateBullet();
+            
         }
     }
     public override void ButtonUp()
@@ -28,8 +30,11 @@ public class MachineGun : Gun
         }
     }
     protected override void GenerateBullet()
-    {
+    {       
         base.GenerateBullet();
+
+        audioController.PlaySfx(audioController.gun);
+
         bulletToShoot.GetComponent<Bullet>().alpha = .1f;
         bulletToShoot.GetComponent<Bullet>().Hit(shootVector.normalized);
     }
