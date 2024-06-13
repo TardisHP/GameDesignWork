@@ -19,12 +19,12 @@ public class Bomb : MonoBehaviour
     {
         colorArray = new Color[]{
             Color.red,
-            Color.green,
             Color.blue,
             Color.yellow,
-            new Color(0f, 1f, 1f),
-            new Color(1f, 0f, 1f),
-            new Color(1f, 1f, 0f),
+            new Color(0f, .5f, 0),
+            new Color(0f, .5f, .5f),
+            new Color(.5f, 0f, .5f),
+            new Color(.5f, .5f, 0f),
         };
         colorQueue = new Queue<int>();
     }
@@ -47,8 +47,8 @@ public class Bomb : MonoBehaviour
                 killScore += i++;
             }
             enemyToDelete.Clear();
+            GenerateColor();
         }
-        GenerateColor();
     }
     private void FindSameColorEnemy()
     {

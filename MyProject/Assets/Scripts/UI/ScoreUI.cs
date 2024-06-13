@@ -11,4 +11,8 @@ public class ScoreUI : MonoBehaviour
     {
         text.text = bomb.killScore.ToString();
     }
+    public int GetScore()
+    {
+        return int.Parse(text.text);
+    }
 }

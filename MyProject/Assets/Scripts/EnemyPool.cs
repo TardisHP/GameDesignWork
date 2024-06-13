@@ -8,16 +8,18 @@ public class EnemyPool : MonoBehaviour
     public Player player;
     public ArrayList enemies = new ArrayList();
     private float generateTimer;
+    [SerializeField] private float generateLevel;    // 生成敌人的时间间隔
     private int generateCount;
     private void Start()
     {
         generateTimer = 3f;
-        generateCount = 6;
+        generateLevel = 5f;
+        generateCount = 11;
     }
     private void Update()
     {
         generateTimer += Time.deltaTime;
-        if (generateTimer > 5f && generateCount > enemies.Count)
+        if (generateTimer > generateLevel && generateCount > enemies.Count)
         {
             generateTimer = 0f;
             GameObject tmp = Instantiate(enemyPrefab, GeneratePosition(), Quaternion.identity);
@@ -31,5 +33,9 @@ public class EnemyPool : MonoBehaviour
         float angle = Random.Range(0f, 360f);
         pos += length * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
         return pos;
+    }
+    public void ChangeGenerateLevel()
+    {
+        generateLevel = generateLevel / 1.5f + 1f;
     }
 }

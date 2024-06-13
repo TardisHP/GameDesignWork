@@ -7,7 +7,7 @@ public class Stain : MonoBehaviour
     private float time;
     void Start()
     {
-        time = 5f;
+        time = 15f;
     }
     void Update()
     {

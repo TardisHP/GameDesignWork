@@ -48,12 +48,15 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     private void Update()
     {
         stateMachine.currentState.Update();
+        // ·¢Éä×Óµ¯
+        /*
         shootTimer += Time.deltaTime;
         if (shootTimer > 3f)
         {
             shootTimer = 0f;
             ShootToPlayer();
         }
+        */
     }
 
     public void HitByPlayer(Vector2 vector, float force)
