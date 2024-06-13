@@ -6,8 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BombBullet : Bullet
 {
-    AudioController audioController;
-
+    private AudioController audioController;
     protected StainGenerator stainGenerator => FindFirstObjectByType<StainGenerator>();
     protected SpriteRenderer spriteRenderer => GetComponent<SpriteRenderer>();
     protected float boomtimer = 99f;

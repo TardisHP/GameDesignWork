@@ -5,10 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     protected Color color;  // 子弹的颜色
+    protected BulletAnimation bulletAnimation;  // 子弹动画控制
     public float alpha; // 调色的多少
     protected Rigidbody2D rb => GetComponent<Rigidbody2D>();
     protected void Start()
     {
+        bulletAnimation = GetComponent<BulletAnimation>();
         // n秒后自动销毁
         Destroy(gameObject, 5f);        
     }
@@ -19,6 +21,7 @@ public class Bullet : MonoBehaviour
         if (colorChangeable != null )
         {
             colorChangeable.ChangeColor(color, alpha);
+            // bulletAnimation.stateMachine.ChangeState(bulletAnimation.explodeState);
             Destroy(gameObject);
         }
         // 如果目标可以被玩家击退，则根据子弹的方向击退目标

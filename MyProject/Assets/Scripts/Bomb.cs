@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Bomb : MonoBehaviour
 {
-    AudioController audioController;
-
     public StainGenerator stainGenerator;
     public int killScore;
     private Color[] colorArray;  // 储存可能出现的炸弹颜色
@@ -32,8 +30,6 @@ public class Bomb : MonoBehaviour
     }
     private void Start()
     {
-        audioController = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioController>();
-
         GenerateColor();
         killScore = 0;
     }
@@ -43,9 +39,6 @@ public class Bomb : MonoBehaviour
         FindSameColorEnemy();
         if (enemyToDelete.Count > 0 )
         {
-            // 播放击杀音效
-            audioController.PlaySfx(audioController.bomb);
-
             stainGenerator.Generate(color, transform.position, Vector3.up, enemyToDelete.Count / 3, enemyToDelete.Count, enemyToDelete.Count);
             foreach (EnemyColor enemy in enemyToDelete)
             {
