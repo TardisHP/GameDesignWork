@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     public float hitForce;
     #endregion
     public GameObject damagePrefab;
+    public bool canMove;
     private float shootTimer;
     
     private void Awake()

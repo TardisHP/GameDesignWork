@@ -26,8 +26,11 @@ public class EnemyMoveState : EnemyState
     public override void Update()
     {
         base.Update();
-        moveDirection = player.transform.position - enemy.transform.position;
-        Move();
+        if (enemy.canMove)
+        {
+            moveDirection = player.transform.position - enemy.transform.position;
+            Move();
+        }
     }
     private void Move()
     {

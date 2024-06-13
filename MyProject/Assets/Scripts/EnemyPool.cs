@@ -10,6 +10,7 @@ public class EnemyPool : MonoBehaviour
     private float generateTimer;
     [SerializeField] private float generateLevel;    // 生成敌人的时间间隔
     private int generateCount;
+    public bool canMove;
     private void Start()
     {
         generateTimer = 3f;
@@ -23,6 +24,7 @@ public class EnemyPool : MonoBehaviour
         {
             generateTimer = 0f;
             GameObject tmp = Instantiate(enemyPrefab, GeneratePosition(), Quaternion.identity);
+            tmp.GetComponent<Enemy>().canMove = canMove;
             enemies.Add(tmp.GetComponent<EnemyColor>());
         }
     }
