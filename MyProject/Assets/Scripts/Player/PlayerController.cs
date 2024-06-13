@@ -69,4 +69,8 @@ public class PlayerController : MonoBehaviour
     {
         player.stateMachine.ChangeState(player.bombState);
     }
+    private void OnProp(InputValue value)
+    {
+        player.GetComponent<PlayerProp>().UseProp();
+    }
 }

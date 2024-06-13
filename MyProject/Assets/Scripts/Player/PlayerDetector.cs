@@ -19,6 +19,10 @@ public class PlayerDetector : MonoBehaviour
             player.rb.AddForce(vector.normalized * 10f, ForceMode2D.Impulse);
             player.health -= 1;
             healthUI.DeleteHeart();
+            if (player.health <= 0)
+            {
+                player.stateMachine.ChangeState(player.deadState);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public ScoreUI score;
     public EnemyPool enemyPool;
-    private int level;
+    public int level;
     private void Start()
     {
         level = 1;

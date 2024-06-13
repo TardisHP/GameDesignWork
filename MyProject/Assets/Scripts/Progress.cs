@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Progress : MonoBehaviour
 {
     public EnemyPool enemyPool;
+    public Player player;
     private Image progressImg;
     private int enemyAccount;
     private const float MAXACCOUNT = 10.0f;
@@ -17,5 +18,9 @@ public class Progress : MonoBehaviour
     {
         enemyAccount = enemyPool.enemies.Count;
         progressImg.fillAmount = enemyAccount / MAXACCOUNT;
+        if (enemyAccount > MAXACCOUNT)
+        {
+            player.stateMachine.ChangeState(player.deadState);
+        }
     }
 }

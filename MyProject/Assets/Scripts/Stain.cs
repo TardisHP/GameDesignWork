@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stain : MonoBehaviour
 {
-    private float time;
+    public float time;
     void Start()
     {
         time = 15f;

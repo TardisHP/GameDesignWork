@@ -14,7 +14,7 @@ public class EnemyPool : MonoBehaviour
     {
         generateTimer = 3f;
         generateLevel = 5f;
-        generateCount = 11;
+        generateCount = 24; //µĞÈËÉÏÏŞ
     }
     private void Update()
     {

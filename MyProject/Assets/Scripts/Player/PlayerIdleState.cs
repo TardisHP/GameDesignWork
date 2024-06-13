@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -31,7 +32,10 @@ public class PlayerIdleState : PlayerState
         player.animator.SetFloat("mousePosX", shootVector.x);
         player.animator.SetFloat("mousePosY", shootVector.y);
 
-        player.controller.MovePlayer();
+        if (player.canMove)
+        {
+            player.controller.MovePlayer();
+        }
         player.controller.KeepPress();
         player.controller.MouseMiddleButton();
         if (player.rb.velocity != Vector2.zero)

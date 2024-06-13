@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState { get; private set; }
     public PlayerBombState bombState { get; private set; }
     public PlayerHitState hitState { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
     #endregion
     public bool canHurt;
     public int health;
     public PlayerDetector detector;
+    public Canvas endCanvas;
+    public bool canMove;
     public void Awake()
     {
         stateMachine = new PlayerStateMachine();
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
         moveState = new PlayerMoveState(this, stateMachine, "isMove");
         bombState = new PlayerBombState(this, stateMachine, "isBomb");
         hitState = new PlayerHitState(this, stateMachine, "isHit");
+        deadState = new PlayerDeadState(this, stateMachine, "isDead");
     }
 
     private void Start()
@@ -39,6 +43,7 @@ public class Player : MonoBehaviour
         stateMachine.Initialize(idleState);
         canHurt = true;
         health = 5;
+        endCanvas.enabled = false;
     }
     void Update()
     {

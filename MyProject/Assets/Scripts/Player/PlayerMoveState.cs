@@ -31,7 +31,10 @@ public class PlayerMoveState : PlayerState
         player.animator.SetFloat("mousePosX", shootVector.x);
         player.animator.SetFloat("mousePosY", shootVector.y);
 
-        player.controller.MovePlayer();
+        if (player.canMove)
+        {
+            player.controller.MovePlayer();
+        }
         player.controller.KeepPress();
         player.controller.MouseMiddleButton();
         if (player.rb.velocity == Vector2.zero)
