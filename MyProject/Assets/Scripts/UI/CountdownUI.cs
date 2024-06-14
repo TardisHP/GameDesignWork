@@ -7,6 +7,7 @@ public class CountdownUI : MonoBehaviour
 {
     public float timeRemaining = 60f; // 初始倒计时时间
     public Text countdownText; // 用于显示倒计时的文本组件
+    public Player player;
 
     void Update()
     {
@@ -20,6 +21,9 @@ public class CountdownUI : MonoBehaviour
         {
             timeRemaining = 0; // 倒计时结束，确保时间不为负值
             // 在此添加倒计时结束后的逻辑，比如游戏结束、显示成绩等
+            player.stateMachine.ChangeState(player.deadState);
+            player.endCanvas.enabled = true;
+            player.DestroySelf();
         }
     }
 

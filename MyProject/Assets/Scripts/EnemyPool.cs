@@ -8,14 +8,12 @@ public class EnemyPool : MonoBehaviour
     public Player player;
     public ArrayList enemies = new ArrayList();
     private float generateTimer;
-    [SerializeField] private float generateLevel;    // 生成敌人的时间间隔
-    private int generateCount;
+    public float generateLevel;    // 生成敌人的时间间隔
+    public int generateCount;
     public bool canMove;
     private void Start()
     {
         generateTimer = 3f;
-        generateLevel = 5f;
-        generateCount = 24; //敌人上限
     }
     private void Update()
     {

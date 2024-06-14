@@ -7,7 +7,7 @@ public class Bomb : MonoBehaviour
 {
     public StainGenerator stainGenerator;
     public int killScore;
-    private Color[] colorArray;  // 储存可能出现的炸弹颜色
+    private Color[][] colorArray;  // 储存可能出现的炸弹颜色
     private Queue<int> colorQueue;    // 储存炸弹颜色的序列
     public Color color; // 炸弹的颜色
     private Vector3 colorVector;    // 储存炸弹颜色的向量
@@ -15,15 +15,28 @@ public class Bomb : MonoBehaviour
     private ArrayList enemyToDelete = new ArrayList();  // 需要摧毁的敌人
     private Image bombImage => GetComponentInChildren<Image>();
     private Vector3 white = new Vector3(1f, 1f, 1f);
+    public int type;   // 0:在颜料池子里取，1:随机
     private void Awake()
     {
-        colorArray = new Color[]{
+        colorArray = new Color[2][];
+        colorArray[0] = new Color[]{
             Color.red,
             Color.blue,
             Color.yellow,
             new Color(.3f, .6f, .4f),   // green
             new Color(.4f, 0, .4f),     // purple
             new Color(1f, .4f, .2f),    // orange
+        };
+        colorArray[1] = new Color[]{
+            new Color(.3f, .6f, .4f),   // green
+            new Color(.4f, 0, .4f),     // purple
+            new Color(1f, .4f, .2f),    // orange
+            new Color(.8f, .7f, .5f),    //
+            new Color(.1f, .7f, .7f),    //
+            new Color(.2f, .1f, .8f),    //
+            new Color(.7f, .1f, .2f),    //
+            new Color(.2f, .3f, .8f),    //
+            new Color(.8f, .6f, .2f),    //
         };
         colorQueue = new Queue<int>();
     }
@@ -55,9 +68,9 @@ public class Bomb : MonoBehaviour
         {
             Vector3 enemyColorVector = ColorToVector(enemy.GetColor());
             // Debug.Log(colorVector);
-            Debug.Log(enemyColorVector);
+            // Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.5f && enemyColorVector != white)
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.2f && enemyColorVector != white)
             {
                 enemyToDelete.Add(enemy);
             }
@@ -71,17 +84,17 @@ public class Bomb : MonoBehaviour
         if (colorQueue.Count == 0)
         {
             int c = 0;
-            for (int i = 0; i < colorArray.Length; i++)
+            for (int i = 0; i < colorArray[type].Length; i++)
             {
                 do
                 {
-                    c = Random.Range(0, colorArray.Length);
+                    c = Random.Range(0, colorArray[type].Length);
 
                 } while (colorQueue.Contains(c));
                 colorQueue.Enqueue(c);
             }
         }
-        color = colorArray[colorQueue.Dequeue()];
+        color = colorArray[type][colorQueue.Dequeue()];
         colorVector = ColorToVector(color);
         bombImage.color = color;
     }
