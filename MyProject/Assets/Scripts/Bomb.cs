@@ -32,11 +32,12 @@ public class Bomb : MonoBehaviour
             new Color(.4f, 0, .4f),     // purple
             new Color(1f, .4f, .2f),    // orange
             new Color(.8f, .7f, .5f),    //
-            new Color(.1f, .7f, .7f),    //
-            new Color(.2f, .1f, .8f),    //
             new Color(.7f, .1f, .2f),    //
-            new Color(.2f, .3f, .8f),    //
-            new Color(.8f, .6f, .2f),    //
+            new Color(.2f, .3f, .6f),    //
+            new Color(.2f, .6f, .4f),    //
+            new Color(.1f, .3f, .6f),    //
+            new Color(.4f, .3f, .8f),    //
+            new Color(.1f, .2f, .5f),    //
         };
         colorQueue = new Queue<int>();
     }
@@ -67,10 +68,10 @@ public class Bomb : MonoBehaviour
         foreach (EnemyColor enemy in enemyPool.enemies)
         {
             Vector3 enemyColorVector = ColorToVector(enemy.GetColor());
-            // Debug.Log(colorVector);
-            // Debug.Log(enemyColorVector);
-            // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
-            if (Vector3.Distance(enemyColorVector, colorVector) < 0.2f && enemyColorVector != white)
+            Debug.Log(colorVector);
+            Debug.Log(enemyColorVector);
+            Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
+            if (Vector3.Distance(enemyColorVector, colorVector) < 0.27f && enemyColorVector != white)
             {
                 enemyToDelete.Add(enemy);
             }

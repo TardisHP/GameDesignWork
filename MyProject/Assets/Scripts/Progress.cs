@@ -21,6 +21,8 @@ public class Progress : MonoBehaviour
         if (enemyAccount > MAXACCOUNT)
         {
             player.stateMachine.ChangeState(player.deadState);
+            player.endCanvas.enabled = true;
+            player.DestroySelf();
         }
     }
 }

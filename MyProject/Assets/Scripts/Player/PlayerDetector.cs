@@ -23,6 +23,8 @@ public class PlayerDetector : MonoBehaviour
             if (player.health <= 0)
             {
                 player.stateMachine.ChangeState(player.deadState);
+                player.endCanvas.enabled = true;
+                player.DestroySelf();
             }
         }
     }

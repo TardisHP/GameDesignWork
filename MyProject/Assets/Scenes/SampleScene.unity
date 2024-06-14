@@ -155,6 +155,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 116968078}
+  - {fileID: 1215259682}
   - {fileID: 1556539942}
   - {fileID: 1722927075}
   - {fileID: 1223299393}
@@ -416,7 +417,7 @@ GameObject:
   - component: {fileID: 130984888}
   - component: {fileID: 130984887}
   - component: {fileID: 130984886}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +549,7 @@ GameObject:
   - component: {fileID: 150810863}
   - component: {fileID: 150810865}
   - component: {fileID: 150810864}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1582,7 @@ GameObject:
   - component: {fileID: 1067952586}
   - component: {fileID: 1067952588}
   - component: {fileID: 1067952587}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2001,17 +2002,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215259681}
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.42, y: 0.73999995, z: 0.7}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1228346054}
-  m_Father: {fileID: 1556539942}
+  m_Children: []
+  m_Father: {fileID: 64548323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 63}
+  m_AnchoredPosition: {x: 771.28, y: -252.5}
   m_SizeDelta: {x: 400.6934, y: 315.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1215259683
@@ -2086,7 +2086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -279.625, y: 285.11407}
+  m_AnchoredPosition: {x: -279.625, y: 304.3}
   m_SizeDelta: {x: 34.7501, y: 51.7719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1223299394
@@ -2212,16 +2212,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228346053}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.8918919, z: 0.9428575}
+  m_LocalScale: {x: 1.5714283, y: 0.8918917, z: 0.9428576}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1215259682}
+  m_Father: {fileID: 1556539942}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200.80116, y: 187.2394}
+  m_AnchoredPosition: {x: -164.4, y: 191.59055}
   m_SizeDelta: {x: 229.8531, y: 229.8531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1228346055
@@ -2288,7 +2288,7 @@ GameObject:
   - component: {fileID: 1339485390}
   - component: {fileID: 1339485389}
   - component: {fileID: 1339485393}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EndCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2356,7 +2356,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!224 &1339485392
 RectTransform:
@@ -2426,10 +2426,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 752402767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -188.46712, y: 201.29}
-  m_SizeDelta: {x: 100, y: 56.2}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.7, y: 25.5}
+  m_SizeDelta: {x: 100, y: 56.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357051608
 MonoBehaviour:
@@ -2655,10 +2655,10 @@ RectTransform:
   m_GameObject: {fileID: 1556539941}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22, y: 0.74, z: 0.7}
+  m_LocalScale: {x: 0.42, y: 0.74, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1215259682}
+  - {fileID: 1228346054}
   m_Father: {fileID: 64548323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2889,7 +2889,7 @@ GameObject:
   - component: {fileID: 1683328305}
   - component: {fileID: 1683328307}
   - component: {fileID: 1683328306}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2987,7 +2987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -51, y: 285.11407}
+  m_AnchoredPosition: {x: -51, y: 304.3}
   m_SizeDelta: {x: 34.7501, y: 51.7719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722927076
@@ -3098,7 +3098,7 @@ GameObject:
   - component: {fileID: 1740895080}
   - component: {fileID: 1740895082}
   - component: {fileID: 1740895081}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4686,7 +4686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777ea6da8e0974548a219caf5ba32c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImg: {fileID: 1794235329, guid: cb28649b33814084d996ad0eda77c9d8, type: 3}
+  gunImg: {fileID: 963642289, guid: cb28649b33814084d996ad0eda77c9d8, type: 3}
   bulletPrefab:
   - {fileID: 5275155368732691788, guid: 5610f9a8aa3888b4290630c3e095d410, type: 3}
   - {fileID: 5275155368732691788, guid: 1fedda1c633c51e42a552485df106399, type: 3}
@@ -5034,7 +5034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cc7c8718427d646bfc70d87b247d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImg: {fileID: 963642289, guid: cb28649b33814084d996ad0eda77c9d8, type: 3}
+  gunImg: {fileID: 1794235329, guid: cb28649b33814084d996ad0eda77c9d8, type: 3}
   bulletPrefab:
   - {fileID: 2421354306418194473, guid: f7b172d64ca8eae4a9c390007a5d33c0, type: 3}
   - {fileID: 2421354306418194473, guid: 87e745cb67b6204499efe54450ef2afc, type: 3}

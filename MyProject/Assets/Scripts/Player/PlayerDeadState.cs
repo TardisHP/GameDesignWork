@@ -29,8 +29,8 @@ public class PlayerDeadState : PlayerState
         if (triggerCalled)
         {
             // player.transform.DOScale(Vector3.zero, 1);
-            player.endCanvas.enabled = true;
-            player.DestroySelf();
+            // player.endCanvas.enabled = true;
+            // player.DestroySelf();
         }
     }
 }
