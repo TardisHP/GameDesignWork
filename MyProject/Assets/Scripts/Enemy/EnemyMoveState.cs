@@ -26,15 +26,16 @@ public class EnemyMoveState : EnemyState
     public override void Update()
     {
         base.Update();
-        if (enemy.canMove)
-        {
             moveDirection = player.transform.position - enemy.transform.position;
             Move();
-        }
     }
     private void Move()
     {
         // enemy.transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
         enemy.rb.velocity = moveDirection.normalized * moveSpeed;
+        if (enemy.canMove == false) 
+        {
+            moveSpeed = 0;
+        }
     }
 }
