@@ -10,8 +10,12 @@ public class PlayerDeadState : PlayerState
     }
     public override void Enter()
     {
-        player.GetComponent<Collider2D>().enabled = false;
         base.Enter();
+        player.GetComponent<Collider2D>().enabled = false;
+        foreach(EnemyColor enemy in player.enemyPool.enemies)
+        {
+            enemy.GetComponent<Enemy>().stateMachine.ChangeState(enemy.GetComponent<Enemy>().deadState);
+        }
     }
 
     public override void Exit()
@@ -26,6 +30,7 @@ public class PlayerDeadState : PlayerState
         {
             // player.transform.DOScale(Vector3.zero, 1);
             player.endCanvas.enabled = true;
+            player.DestroySelf();
         }
     }
 }

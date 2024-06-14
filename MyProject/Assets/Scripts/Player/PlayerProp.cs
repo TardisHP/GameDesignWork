@@ -37,7 +37,7 @@ public class PlayerProp : MonoBehaviour
             PlayEffect(can);
             foreach (EnemyColor enemy in enemyPool.enemies)
             {
-                enemy.ChangeColor(can.canColor, 1);
+                enemy.ChangeColor(can.canColor, 0.5f);
             }
         }
     }

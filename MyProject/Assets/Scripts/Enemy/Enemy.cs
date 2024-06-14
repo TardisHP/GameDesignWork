@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IHitFX
     public void DestroySelf()
     {
         stateMachine.ChangeState(deadState);
-        stainGenerator.Generate(sprite.color, transform.position, moveVector, .5f, .15f);
+        stainGenerator.Generate(sprite.color, transform.position, Vector3.up * 10, .5f, .15f);
     }
 
     public void PlayHitFX()

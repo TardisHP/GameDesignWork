@@ -21,10 +21,9 @@ public class Bomb : MonoBehaviour
             Color.red,
             Color.blue,
             Color.yellow,
-            new Color(0f, .5f, 0),
-            new Color(0f, .5f, .5f),
-            new Color(.5f, 0f, .5f),
-            new Color(.5f, .5f, 0f),
+            new Color(.3f, .6f, .4f),   // green
+            new Color(.4f, 0, .4f),     // purple
+            new Color(1f, .4f, .2f),    // orange
         };
         colorQueue = new Queue<int>();
     }
@@ -56,7 +55,7 @@ public class Bomb : MonoBehaviour
         {
             Vector3 enemyColorVector = ColorToVector(enemy.GetColor());
             // Debug.Log(colorVector);
-            // Debug.Log(enemyColorVector);
+            Debug.Log(enemyColorVector);
             // Debug.Log(Vector3.Distance(enemyColorVector, colorVector));
             if (Vector3.Distance(enemyColorVector, colorVector) < 0.5f && enemyColorVector != white)
             {

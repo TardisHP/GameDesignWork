@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public bool canHurt;
     public int health;
     public PlayerDetector detector;
+    public EnemyPool enemyPool;
     public Canvas endCanvas;
     public bool canMove;
     public void Awake()
@@ -50,6 +51,10 @@ public class Player : MonoBehaviour
         stateMachine.currentState.Update();
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public void DestroySelf()
+    {
+        Destroy(controller);
+    }
 }
 
 

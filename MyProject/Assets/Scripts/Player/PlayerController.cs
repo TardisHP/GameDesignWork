@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         //将要使用的ActionMap开启
         playerInputAction.Player.Enable();
     }
-    private void OnDisable()
+    public void OnDisable()
     {
         //上述同理
         playerInputAction.Player.Disable();

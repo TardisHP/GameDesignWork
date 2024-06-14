@@ -16,6 +16,7 @@ public class PlayerDetector : MonoBehaviour
         {
             Vector2 vector = player.transform.position - whereFrom.position;
             player.stateMachine.ChangeState(player.hitState);
+            // »÷ÍË
             player.rb.AddForce(vector.normalized * 10f, ForceMode2D.Impulse);
             player.health -= 1;
             healthUI.DeleteHeart();
