@@ -6,6 +6,7 @@ using UnityEngine.U2D;
 public class PropCan : MonoBehaviour, IColorChange
 {
     public Color canColor;
+    public SpriteRenderer shade;
     private SpriteRenderer sprite;
     private ColorFixer colorFixer;
     private void Start()
@@ -38,6 +39,7 @@ public class PropCan : MonoBehaviour, IColorChange
             canColor = sprite.color;
             GetComponent<Collider2D>().enabled = false;
             sprite.enabled = false;
+            shade.enabled = false;
             playerProp.canQueue.Enqueue(this);
         }
     }

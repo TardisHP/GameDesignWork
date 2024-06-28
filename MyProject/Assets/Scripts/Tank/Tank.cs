@@ -8,6 +8,8 @@ public class Tank : MonoBehaviour, IColorChange
 {
     private AudioController audioController;
     private SpriteRenderer sprite => GetComponent<SpriteRenderer>();
+    public SpriteRenderer shade;
+    public Canvas canvas;
     private StainGenerator stainGenerator => FindFirstObjectByType<StainGenerator>();
     public Collider2D explodeCollider; // 爆炸检测碰撞体
     public Image durabilityBar;
@@ -43,6 +45,8 @@ public class Tank : MonoBehaviour, IColorChange
         GetComponent<Collider2D>().enabled = false;
         explodeCollider.enabled = true;
         sprite.enabled = false;
+        shade.enabled = false;
+        canvas.enabled = false;
         //播放爆炸音效
         audioController.PlaySfx(audioController.bombBullet);
         // 在子弹处生成一滩爆炸痕迹
