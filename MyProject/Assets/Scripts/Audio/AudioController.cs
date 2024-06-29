@@ -9,6 +9,8 @@ public class AudioController : MonoBehaviour
 
     [Header("BGM")]
     public AudioClip bgm;
+    public AudioClip bgmHand;
+    public AudioClip showTitle;
     [Header("Gun")]
     public AudioClip machienGun;
     public AudioClip sniperGun;

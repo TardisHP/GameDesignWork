@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class MenuAnim : MonoBehaviour
 {
+    public AudioController audioController;
     public Image colorGreen;
     public Image colorYellow;
     public Image title;
     public Image[] buttons;
+
+    private float timer = 0;
     private void Start()
     {
         SetZero();
-        colorGreen.transform.DOScale(Vector3.one, 1f)
-            .SetEase(Ease.InExpo);
-        colorYellow.transform.DOScale(Vector3.one, 1f)
-            .SetEase(Ease.InExpo)
+        Tween t = DOTween.To(() => timer, x => timer = x, 1, 1f)
             .OnComplete(ShowTitle);
     }
 
@@ -34,6 +34,8 @@ public class MenuAnim : MonoBehaviour
 
     private void ShowTitle()
     {
+        colorGreen.transform.localScale = Vector3.one;
+        colorYellow.transform.localScale = Vector3.one;
         colorGreen.DOColor(new Vector4(1, 1, 1, 0.9f), 1f);
         colorYellow.DOColor(new Vector4(1, 1, 1, 0.9f), 1f);
         title.DOColor(Vector4.one, 1f)
@@ -45,5 +47,11 @@ public class MenuAnim : MonoBehaviour
             button.GetComponentInChildren<Text>().DOColor(new Vector4(0.42f, 0.25f, 0.13f, 1f), 1f)
                 .SetEase(Ease.InCubic);
         }
+        Tween t = DOTween.To(() => timer, x => timer = x, 1, 1f)
+            .OnComplete(() =>
+            {
+                audioController.PlaySfx(audioController.showTitle);
+                audioController.PlaySfx(audioController.bgmHand);
+            });
     }
 }
