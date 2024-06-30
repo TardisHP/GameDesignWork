@@ -28,7 +28,6 @@ public class MenuAnim : MonoBehaviour
         foreach (var button in buttons)
         {
             button.color = Vector4.zero;
-            button.GetComponentInChildren<Text>().color = Vector4.zero;
         }
     }
 
@@ -44,13 +43,11 @@ public class MenuAnim : MonoBehaviour
         {
             button.DOColor(Vector4.one, 1f)
                 .SetEase(Ease.InCubic);
-            button.GetComponentInChildren<Text>().DOColor(new Vector4(0.42f, 0.25f, 0.13f, 1f), 1f)
-                .SetEase(Ease.InCubic);
         }
         Tween t = DOTween.To(() => timer, x => timer = x, 1, 1f)
             .OnComplete(() =>
             {
-                audioController.PlaySfx(audioController.showTitle);
+                // audioController.PlaySfx(audioController.showTitle);
                 audioController.PlaySfx(audioController.bgmHand);
             });
     }
